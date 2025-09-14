@@ -8,6 +8,7 @@ import { Layout } from "@/components/layout/Layout";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import MasterData from "./pages/MasterData";
+import Generate from "./pages/Generate";
 import MyTimetable from "./pages/MyTimetable";
 import NotFound from "./pages/NotFound";
 
@@ -21,12 +22,6 @@ const Constraints = () => (
   </div>
 );
 
-const Generate = () => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold">Generate Timetable</h1>
-    <p className="text-muted-foreground">Create new timetables with automated scheduling.</p>
-  </div>
-);
 
 const Compare = () => (
   <div className="space-y-6">
