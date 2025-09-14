@@ -2,41 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Educational Timetable Management System Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - Clean educational theme */
+    --background: 250 100% 99%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Educational blue */
+    --primary: 210 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 85% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Soft gray */
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 215 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 175 70% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status colors for conflicts */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --warning: 40 95% 50%;
+    --warning-foreground: 30 25% 15%;
+    
+    --success: 145 65% 45%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Department colors */
+    --dept-science: 260 85% 60%;
+    --dept-math: 35 85% 55%;
+    --dept-arts: 310 65% 55%;
+    --dept-commerce: 195 75% 50%;
 
-    --radius: 0.5rem;
+    --border: 220 25% 88%;
+    --input: 220 25% 88%;
+    --ring: 210 85% 45%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 85% 45%), hsl(175 70% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 15% 98%), hsl(220 15% 96%));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 12px -2px hsl(215 25% 15% / 0.08);
+    --shadow-card: 0 8px 24px -4px hsl(215 25% 15% / 0.12);
+    --shadow-elevated: 0 16px 40px -8px hsl(215 25% 15% / 0.16);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-quick: all 0.15s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +129,70 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* KPI Card component */
+  .kpi-card {
+    @apply bg-card border border-border rounded-xl p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] transition-[var(--transition-smooth)];
+  }
+
+  /* Status indicators */
+  .status-success {
+    @apply bg-success/10 text-success border-success/20;
+  }
+
+  .status-warning {
+    @apply bg-warning/10 text-warning-foreground border-warning/20;
+  }
+
+  .status-error {
+    @apply bg-destructive/10 text-destructive border-destructive/20;
+  }
+
+  /* Department color classes */
+  .dept-science {
+    @apply bg-[hsl(var(--dept-science))] text-white;
+  }
+
+  .dept-math {
+    @apply bg-[hsl(var(--dept-math))] text-white;
+  }
+
+  .dept-arts {
+    @apply bg-[hsl(var(--dept-arts))] text-white;
+  }
+
+  .dept-commerce {
+    @apply bg-[hsl(var(--dept-commerce))] text-white;
+  }
+
+  /* Timetable grid */
+  .timetable-grid {
+    @apply grid gap-2 bg-muted/50 p-4 rounded-xl;
+    grid-template-columns: auto repeat(5, 1fr);
+    grid-template-rows: auto repeat(8, minmax(60px, auto));
+  }
+
+  .time-slot {
+    @apply flex items-center justify-center text-sm font-medium text-muted-foreground bg-muted rounded-lg;
+  }
+
+  .day-header {
+    @apply flex items-center justify-center text-sm font-semibold text-foreground bg-card rounded-lg border border-border;
+  }
+
+  .class-slot {
+    @apply p-2 rounded-lg border-2 border-transparent hover:border-primary/30 transition-[var(--transition-quick)] cursor-pointer;
+  }
+
+  .class-slot.occupied {
+    @apply text-white shadow-sm;
+  }
+
+  .class-slot.conflict {
+    @apply ring-2 ring-destructive ring-opacity-50 animate-pulse;
   }
 }
