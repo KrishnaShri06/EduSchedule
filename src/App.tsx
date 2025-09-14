@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
-import Login from "./pages/Login";
+import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import MasterData from "./pages/MasterData";
 import MyTimetable from "./pages/MyTimetable";
@@ -60,41 +60,34 @@ const App = () => {
     setUser(null);
   };
 
-  if (!user) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Login onLogin={handleLogin} />
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    );
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Layout user={user} onLogout={handleLogout}>
+          {!user ? (
             <Routes>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/master-data/*" element={<MasterData />} />
-              <Route path="/constraints" element={<Constraints />} />
-              <Route path="/generate" element={<Generate />} />
-              <Route path="/compare" element={<Compare />} />
-              <Route path="/approvals" element={<Approvals />} />
-              <Route path="/publish" element={<Publish />} />
-              <Route path="/my-timetable" element={<MyTimetable />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<Home onLogin={handleLogin} />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </Layout>
+          ) : (
+            <Layout user={user} onLogout={handleLogout}>
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/master-data/*" element={<MasterData />} />
+                <Route path="/constraints" element={<Constraints />} />
+                <Route path="/generate" element={<Generate />} />
+                <Route path="/compare" element={<Compare />} />
+                <Route path="/approvals" element={<Approvals />} />
+                <Route path="/publish" element={<Publish />} />
+                <Route path="/my-timetable" element={<MyTimetable />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          )}
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
