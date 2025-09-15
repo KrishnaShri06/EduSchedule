@@ -104,7 +104,7 @@ export function AppSidebar() {
                         `flex items-center gap-3 px-3 py-2 rounded-lg transition-[var(--transition-quick)] ${
                           isActive || isParentActive(item)
                             ? "bg-primary text-primary-foreground shadow-sm"
-                            : "hover:bg-accent hover:text-accent-foreground"
+                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
                         }`
                       }
                     >
