@@ -112,27 +112,6 @@ export function AppSidebar() {
                       {!collapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
-                  {item.children && !collapsed && (
-                    <div className="ml-4 mt-1 space-y-1">
-                      {item.children.map((child) => (
-                        <SidebarMenuButton key={child.title} asChild>
-                          <NavLink
-                            to={child.url}
-                            className={({ isActive }) =>
-                              `flex items-center gap-2 px-3 py-1.5 text-sm rounded-md transition-[var(--transition-quick)] text-white ${
-                                isActive
-                                  ? "bg-accent text-accent-foreground"
-                                  : "hover:text-accent-foreground hover:bg-muted"
-                              }`
-                            }
-                          >
-                            <child.icon className="h-4 w-4" />
-                            <span>{child.title}</span>
-                          </NavLink>
-                        </SidebarMenuButton>
-                      ))}
-                    </div>
-                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
