@@ -102,12 +102,8 @@ export default function Home({ onLogin }: HomeProps) {
               onClick={() => setShowLogin(true)}
               className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg"
             >
-              Start Free Trial
+              Start for Free
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="lg">
-              Watch Demo
-              <Play className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
