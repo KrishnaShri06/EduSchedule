@@ -101,10 +101,10 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-3 py-2 rounded-lg transition-[var(--transition-quick)] ${
+                        `flex items-center gap-3 px-3 py-2 rounded-lg transition-[var(--transition-quick)] text-foreground ${
                           isActive || isParentActive(item)
                             ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                            : "hover:bg-accent hover:text-accent-foreground"
                         }`
                       }
                     >
