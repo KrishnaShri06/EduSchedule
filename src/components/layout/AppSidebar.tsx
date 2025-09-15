@@ -90,7 +90,7 @@ export function AppSidebar() {
     <Sidebar className={collapsed ? "w-16" : "w-64"} collapsible="icon">
       <SidebarContent className="bg-card border-r border-border">
         <SidebarGroup>
-          <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
+          <SidebarGroupLabel className={collapsed ? "sr-only" : "text-white"}>
             Navigation
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -101,7 +101,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-3 py-2 rounded-lg transition-[var(--transition-quick)] text-foreground ${
+                        `flex items-center gap-3 px-3 py-2 rounded-lg transition-[var(--transition-quick)] text-white ${
                           isActive || isParentActive(item)
                             ? "bg-primary text-primary-foreground shadow-sm"
                             : "hover:bg-accent hover:text-accent-foreground"
@@ -119,10 +119,10 @@ export function AppSidebar() {
                           <NavLink
                             to={child.url}
                             className={({ isActive }) =>
-                              `flex items-center gap-2 px-3 py-1.5 text-sm rounded-md transition-[var(--transition-quick)] ${
+                              `flex items-center gap-2 px-3 py-1.5 text-sm rounded-md transition-[var(--transition-quick)] text-white ${
                                 isActive
                                   ? "bg-accent text-accent-foreground"
-                                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                  : "hover:text-accent-foreground hover:bg-muted"
                               }`
                             }
                           >
